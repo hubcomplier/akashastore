@@ -389,9 +389,19 @@
             transition: all 0.4s ease;
         }
 
-        .category-card:hover .category-bg {
-            opacity: 0.5;
-            transform: scale(1.1);
+        .category-bg video,
+        .category-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover .category-bg video,
+        .category-card:hover .category-bg img {
+            opacity: 0.85;
+            transform: scale(1.05);
         }
 
         .category-card.apparel { background: linear-gradient(135deg, #1a1a2e, #16213e); }
@@ -406,6 +416,7 @@
             right: 0;
             padding: 30px;
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            z-index: 2;
         }
 
         .category-title {
@@ -1237,29 +1248,44 @@
         </div>
 
         <div class="categories-grid">
+            <!-- 1. VESTUÁRIO -->
             <div class="category-card apparel">
-                <div class="category-bg">👕</div>
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171641/AKASHA_VESTI_xehyz3.mp4" muted loop autoplay playsinline></video>
+                </div>
                 <div class="category-content">
                     <h3 class="category-title">VESTUÁRIO</h3>
                     <span class="category-count">Camisetas, Shorts, Moletons</span>
                 </div>
             </div>
+            
+            <!-- 2. ACESSÓRIOS -->
             <div class="category-card accessories">
-                <div class="category-bg">🧢</div>
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171495/AKASHA_ACESSORIOS_kfh0fk.mp4" muted loop autoplay playsinline></video>
+                </div>
                 <div class="category-content">
                     <h3 class="category-title">ACESSÓRIOS</h3>
                     <span class="category-count">Bonés, Buckets, Bolsas</span>
                 </div>
             </div>
+            
+            <!-- 3. KITS MÍSTICOS -->
             <div class="category-card kits">
-                <div class="category-bg">✨</div>
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171229/generated_video_15_hhvaru.mp4" muted loop autoplay playsinline></video>
+                </div>
                 <div class="category-content">
                     <h3 class="category-title">KITS MÍSTICOS</h3>
                     <span class="category-count">Mystery Box, Rituais</span>
                 </div>
             </div>
+            
+            <!-- 4. LIFESTYLE -->
             <div class="category-card lifestyle">
-                <div class="category-bg">🕯️</div>
+                <div class="category-bg">
+                    <img src="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765171863/1765171718904-019afc6e-68f9-7eac-b6de-2bffc7b3abeb_y4pmmk.jpg" alt="Lifestyle">
+                </div>
                 <div class="category-content">
                     <h3 class="category-title">LIFESTYLE</h3>
                     <span class="category-count">Velas, Incensos, Decor</span>
@@ -1480,7 +1506,7 @@
                 </div>
             </div>
 
-            <!-- Short 2 - CORRIGIDO -->
+            <!-- Short 2 -->
             <div class="product-card">
                 <div class="product-actions">
                     <button class="action-btn"><i class="fas fa-heart"></i></button>
@@ -1505,7 +1531,7 @@
                 </div>
             </div>
 
-            <!-- Boné - CORRIGIDO -->
+            <!-- Boné -->
             <div class="product-card" id="acessorios">
                 <span class="product-badge limited">LIMITED</span>
                 <div class="product-actions">
@@ -1530,7 +1556,7 @@
                 </div>
             </div>
 
-            <!-- Bucket - CORRIGIDO -->
+            <!-- Bucket -->
             <div class="product-card">
                 <span class="product-badge hot">HOT</span>
                 <div class="product-actions">
@@ -1563,10 +1589,10 @@
                     <button class="action-btn"><i class="fas fa-eye"></i></button>
                 </div>
                 <div class="product-image">
-                     <video class="product-media"
+                    <video class="product-media"
                         src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765167962/minha_aura_yhukft.mp4"
                         muted loop autoplay playsinline></video>
-                    </div>
+                </div>
                 <div class="product-info">
                     <span class="product-category">BOLSA</span>
                     <h3 class="product-name">Tote Bag Aura Premium</h3>
@@ -1587,10 +1613,10 @@
                     <button class="action-btn"><i class="fas fa-eye"></i></button>
                 </div>
                 <div class="product-image">
-                <video class="product-media"
+                    <video class="product-media"
                         src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765169416/generated_video_13_sv2zk4.mp4"
                         muted loop autoplay playsinline></video>
-                    </div>
+                </div>
                 <div class="product-info">
                     <span class="product-category">BOLSA</span>
                     <h3 class="product-name">Shoulder Bag Akasha</h3>
@@ -1799,7 +1825,4 @@
     </footer>
 
 </body>
-
 </html>
-
-
