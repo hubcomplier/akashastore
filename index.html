@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AKASHA STORE | Loja Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* --- ESTILOS ORIGINAIS + INTEGRAÇÃO --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --gold-primary: #d4af37;
             --gold-light: #f4e4bc;
@@ -22,232 +18,299 @@
             --dark-card: #1a1a25;
             --accent-purple: #8b5cf6;
             --accent-pink: #ec4899;
-            --accent-blue: #3b82f6;
             --accent-green: #10b981;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--dark-bg);
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold-primary);
-            border-radius: 4px;
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--dark-bg); color: #fff; overflow-x: hidden; }
 
         /* Header */
         .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10,10,15,0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
+        .logo { display: flex; align-items: center; gap: 15px; cursor: pointer; }
+        .logo img { height: 45px; }
+        .logo-text { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold-primary); letter-spacing: 3px; }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo img {
-            height: 45px;
-            width: auto;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
-        }
-
-        .logo-text {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 3px;
-        }
-
-        .logo-badge {
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-            color: var(--dark-bg);
-            padding: 4px 10px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            border-radius: 3px;
-            margin-left: 10px;
-        }
-
-        /* Navigation */
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--gold-primary);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold-primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
+        .nav-menu { display: flex; gap: 30px; align-items: center; }
         .cart-btn {
-            position: relative;
-            background: transparent;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold-primary);
-            padding: 10px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            position: relative; background: transparent; border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer;
+            display: flex; align-items: center; gap: 8px; transition: all 0.3s;
         }
-
         .cart-btn:hover {
             background: rgba(212, 175, 55, 0.1);
             border-color: var(--gold-primary);
         }
-
         .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent-pink);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 700;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: -8px; right: -8px; background: var(--accent-pink);
+            color: #fff; font-size: 0.7rem; width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Hero */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding-top: 80px; text-align: center; }
+        .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0f 100%); z-index: -1; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero .gold { color: var(--gold-primary); }
+
+        /* Marquee */
+        .marquee-container { background: var(--gold-primary); padding: 12px 0; overflow: hidden; display: flex; }
+        .marquee { display: flex; animation: marquee 20s linear infinite; white-space: nowrap; }
+        .marquee span { padding: 0 40px; font-weight: 700; color: #000; letter-spacing: 2px; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Vitrine de Produtos */
+        .products-section { padding: 80px 5%; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+
+        /* Product Card */
+        .product-card { background: var(--dark-card); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
+        .product-image { height: 350px; position: relative; overflow: hidden; background: #000; }
+        .product-image video, .product-image img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 20px; }
+        .product-name { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 10px; }
+        .product-price { color: var(--gold-primary); font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
+        .btn-add { width: 100%; padding: 12px; background: var(--gold-primary); border: none; color: #000; font-weight: 700; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-add:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+        /* MODAL DE SELEÇÃO */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(10px);
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: #15151f; width: 95%; max-width: 450px; padding: 30px; border-radius: 15px;
+            border: 1px solid var(--gold-primary); position: relative;
+        }
+        .close-modal { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        .step-label { font-size: 0.8rem; color: var(--gold-primary); margin-bottom: 10px; letter-spacing: 1px; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .opt-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .opt-btn:hover { background: rgba(255,255,255,0.1); }
+        .opt-btn.selected { background: var(--gold-primary); color: #000; font-weight: 700; }
+
+        .color-row { display: flex; gap: 10px; margin-bottom: 20px; }
+        .color-circle { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
+        .color-circle:hover { transform: scale(1.1); }
+        .color-circle.selected { border-color: var(--gold-primary); transform: scale(1.15); }
+        .bg-black { background: #000; border: 1px solid #333; }
+        .bg-white { background: #fff; }
+        .bg-violet { background: var(--accent-purple); }
+
+        .size-row { display: flex; gap: 8px; margin-bottom: 20px; }
+        .size-box { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .size-box:hover { background: rgba(255,255,255,0.05); }
+        .size-box.selected { background: var(--gold-primary); color: #000; font-weight: 700; }
+
+        /* CARRINHO DRAWER */
+        .cart-drawer {
+            position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh;
+            background: var(--dark-secondary); z-index: 2100; transition: 0.4s; padding: 0;
+            display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+        }
+        .cart-drawer.open { right: 0; }
+
+        .cart-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 25px; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .close-cart-btn {
+            background: none; border: none; color: rgba(255,255,255,0.5);
+            font-size: 1.5rem; cursor: pointer; transition: 0.3s;
+        }
+        .close-cart-btn:hover { color: var(--gold-primary); transform: rotate(90deg); }
+
+        .cart-list { flex: 1; overflow-y: auto; padding: 20px 25px; }
+        .cart-item {
+            display: flex; justify-content: space-between; align-items: start;
+            margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 15px; transition: 0.3s;
+        }
+        .cart-item:hover { padding-left: 5px; }
+
+        .cart-footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 25px; }
+
+        .cep-input-group { position: relative; margin-bottom: 15px; }
+        .cep-input-group input {
+            width: 100%; padding: 12px; background: rgba(255,255,255,0.05);
+            border: 1px solid #333; color: #fff; border-radius: 5px;
+            font-size: 1rem; transition: 0.3s;
+        }
+        .cep-input-group input:focus {
+            outline: none; border-color: var(--gold-primary);
+            background: rgba(255,255,255,0.08);
+        }
+        .cep-loading {
+            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+            color: var(--gold-primary); display: none;
+        }
+        .cep-loading.active { display: block; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+        .shipping-info {
+            background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 5px;
+            margin-bottom: 15px; font-size: 0.9rem; display: none;
+        }
+        .shipping-info.active { display: block; }
+
+        .btn-checkout {
+            width: 100%; padding: 15px; background: var(--accent-pink);
+            border: none; color: #fff; font-weight: 700; border-radius: 8px;
+            cursor: pointer; transition: 0.3s; text-transform: uppercase;
+        }
+        .btn-checkout:hover { background: #d6387d; transform: translateY(-2px); }
+        .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .hidden { display: none !important; }
+
+        /* ─────────────────────────────────────────────────────────
+           NOVA SEÇÃO: KIT MYSTERY (igual ao site oficial)
+        ───────────────────────────────────────────────────────── */
+        .featured-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--dark-secondary) 0%, #1a1a2e 50%, var(--dark-secondary) 100%);
             position: relative;
-            padding: 120px 5% 80px;
             overflow: hidden;
         }
-
-        .hero-bg {
+        .featured-section::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,175,55,0.05)"/></svg>') repeat;
+            background-size: 30px 30px;
+            pointer-events: none;
         }
-
-        .hero-content {
+        .featured-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
             position: relative;
             z-index: 2;
-            text-align: center;
-            max-width: 900px;
         }
-
-        .hero-tag {
-            display: inline-block;
+        .featured-box {
+            background: linear-gradient(135deg, #1a1a25, #252535);
+            border-radius: 30px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .featured-box::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, var(--gold-primary), transparent, var(--gold-primary));
+            border-radius: 32px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .kit-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+        .kit-item {
             background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+        .kit-item:hover {
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.15);
+        }
+        .kit-item i {
+            font-size: 2rem;
             color: var(--gold-primary);
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
-
-        .hero h1 {
+        .kit-item span {
+            display: block;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .featured-info .section-tag {
+            display: inline-block;
+            color: var(--gold-primary);
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+        .featured-info h2 {
             font-family: 'Cinzel', serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            line-height: 1.1;
+            font-size: 3rem;
             margin-bottom: 25px;
+            line-height: 1.2;
         }
-
-        .hero h1 .gold {
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+        .featured-info h2 .gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .hero h1 .outline {
-            -webkit-text-stroke: 1px var(--gold-primary);
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
+        .featured-desc {
             color: rgba(255,255,255,0.6);
-            margin-bottom: 40px;
-            font-weight: 300;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
-
-        .hero-cta {
+        .featured-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        .featured-list li {
             display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.8);
+        }
+        .featured-list li i {
+            color: var(--gold-primary);
+            font-size: 1.1rem;
+        }
+        .featured-price {
+            display: flex;
+            align-items: center;
             gap: 20px;
-            justify-content: center;
+            margin-bottom: 30px;
             flex-wrap: wrap;
         }
-
+        .featured-price .old {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.4);
+            text-decoration: line-through;
+        }
+        .featured-price .price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .featured-price .discount {
+            background: var(--accent-pink);
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
         .btn-primary {
             padding: 15px 40px;
             background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
@@ -261,921 +324,25 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-secondary {
-            padding: 15px 40px;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.5);
-        }
-
-        /* Marquee */
-        .marquee-container {
-            background: var(--gold-primary);
-            padding: 15px 0;
-            overflow: hidden;
-        }
-
-        .marquee {
-            display: flex;
-            animation: marquee 30s linear infinite;
-        }
-
-        .marquee-item {
-            flex-shrink: 0;
-            padding: 0 40px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--dark-bg);
-            letter-spacing: 3px;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .marquee-item i {
-            font-size: 0.7rem;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Categories Section */
-        .categories {
-            padding: 100px 5%;
-            background: var(--dark-secondary);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-tag {
-            display: inline-block;
-            color: var(--gold-primary);
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            color: rgba(255,255,255,0.5);
-            font-size: 1.1rem;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .category-card {
-            position: relative;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .category-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            opacity: 0.3;
-            transition: all 0.4s ease;
-        }
-
-        .category-bg video,
-        .category-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-            transition: all 0.4s ease;
-        }
-
-        .category-card:hover .category-bg video,
-        .category-card:hover .category-bg img {
-            opacity: 0.85;
-            transform: scale(1.05);
-        }
-
-        .category-card.apparel { background: linear-gradient(135deg, #1a1a2e, #16213e); }
-        .category-card.accessories { background: linear-gradient(135deg, #1a1a2e, #2d132c); }
-        .category-card.kits { background: linear-gradient(135deg, #1a1a2e, #1e3a2f); }
-        .category-card.lifestyle { background: linear-gradient(135deg, #1a1a2e, #3d1e1e); }
-
-        .category-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            z-index: 2;
-        }
-
-        .category-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-        .category-count {
-            color: var(--gold-primary);
-            font-size: 0.85rem;
-        }
-
-        /* Products Section */
-        .products-section {
-            padding: 100px 5%;
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto 50px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .products-header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .filter-tab {
-            padding: 10px 25px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .filter-tab:hover, .filter-tab.active {
-            background: var(--gold-primary);
-            border-color: var(--gold-primary);
-            color: var(--dark-bg);
-        }
-
-        .gender-cta-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-
-        .gender-cta-btn {
-            padding: 10px 22px;
-            border-radius: 999px;
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            background: rgba(10,10,15,0.8);
-            color: var(--gold-light);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .gender-cta-btn span {
-            font-weight: 700;
-            color: var(--gold-primary);
-        }
-
-        .gender-cta-btn:hover {
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-            color: var(--dark-bg);
-            border-color: transparent;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Product Card */
-        .product-card {
-            background: var(--dark-card);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 10;
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .product-badge.new { background: var(--accent-purple); }
-        .product-badge.hot { background: var(--accent-pink); }
-        .product-badge.limited { background: var(--gold-primary); color: var(--dark-bg); }
-        .product-badge.exclusive { background: linear-gradient(135deg, #667eea, #764ba2); }
-
-        .product-actions {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            opacity: 0;
-            transform: translateX(20px);
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover .product-actions {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .action-btn:hover {
-            background: var(--gold-primary);
-            color: var(--dark-bg);
-        }
-
-        .product-image {
-            position: relative;
-            height: 320px;
-            background: linear-gradient(135deg, #15151f, #1f1f2e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .product-media {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-image .placeholder-icon {
-            font-size: 4rem;
-            color: rgba(212, 175, 55, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .product-card:hover .placeholder-icon {
-            transform: scale(1.1);
-            color: rgba(212, 175, 55, 0.4);
-        }
-
-        .product-phrase {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gold-light);
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        .product-info {
-            padding: 25px;
-        }
-
-        .product-category {
-            color: var(--gold-primary);
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .product-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .product-desc {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-price {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .product-price .currency {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .product-price .old-price {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.4);
-            text-decoration: line-through;
-            margin-left: 10px;
-            font-weight: 400;
-        }
-
-        .add-to-cart {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-            border: none;
-            color: var(--dark-bg);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .add-to-cart:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Featured Product - Kit */
-        .featured-section {
-            padding: 100px 5%;
-            background: linear-gradient(135deg, var(--dark-secondary) 0%, #1a1a2e 50%, var(--dark-secondary) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .featured-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,175,55,0.05)"/></svg>') repeat;
-            background-size: 30px 30px;
-        }
-
-        .featured-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .featured-image {
-            position: relative;
-        }
-
-        .featured-box {
-            background: linear-gradient(135deg, #1a1a25, #252535);
-            border-radius: 30px;
-            padding: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .featured-box::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(135deg, var(--gold-primary), transparent, var(--gold-primary));
-            border-radius: 32px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .kit-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .kit-item {
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .kit-item:hover {
-            transform: translateY(-5px);
-            background: rgba(212, 175, 55, 0.15);
-        }
-
-        .kit-item i {
-            font-size: 2rem;
-            color: var(--gold-primary);
-            margin-bottom: 10px;
-        }
-
-        .kit-item span {
-            display: block;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 1px;
-        }
-
-        .featured-info h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-
-        .featured-info h2 .gold {
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .featured-desc {
-            color: rgba(255,255,255,0.6);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .featured-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .featured-list li {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .featured-list li i {
-            color: var(--gold-primary);
-            font-size: 1.1rem;
-        }
-
-        .featured-price {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .featured-price .price {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        .featured-price .old {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.4);
-            text-decoration: line-through;
-        }
-
-        .featured-price .discount {
-            background: var(--accent-pink);
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        /* Phrases Showcase */
-        .phrases-section {
-            padding: 100px 5%;
-            background: var(--dark-bg);
-        }
-
-        .phrases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .phrase-card {
-            background: linear-gradient(135deg, var(--dark-card), var(--dark-secondary));
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 15px;
-            padding: 35px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .phrase-card::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-family: 'Cinzel', serif;
-            font-size: 5rem;
-            color: rgba(212, 175, 55, 0.1);
-            line-height: 1;
-        }
-
-        .phrase-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .phrase-category {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .phrase-category.viral { background: rgba(236, 72, 153, 0.2); color: var(--accent-pink); }
-        .phrase-category.motivacional { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
-        .phrase-category.hermetica { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
-        .phrase-category.toxica { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-        .phrase-category.quantica { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
-        .phrase-category.esoterica { background: rgba(212, 175, 55, 0.2); color: var(--gold-primary); }
-
-        .phrase-text {
-            font-size: 1.4rem;
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .phrase-products {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .phrase-product {
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 5px;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.6);
-        }
-
-        /* Newsletter */
-        .newsletter {
-            padding: 100px 5%;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
-            text-align: center;
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .newsletter h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .newsletter p {
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 30px;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .newsletter-input {
-            padding: 15px 25px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-            width: 300px;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--gold-primary);
-            background: rgba(255,255,255,0.08);
-        }
-
-        .newsletter-input::placeholder {
-            color: rgba(255,255,255,0.4);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-secondary);
-            padding: 80px 5% 40px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-        }
-
-        .footer-brand img {
-            height: 50px;
-            margin-bottom: 20px;
-        }
-
-        .footer-brand p {
-            color: rgba(255,255,255,0.5);
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.6);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            background: var(--gold-primary);
-            color: var(--dark-bg);
-        }
-
-        .footer-column h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            color: var(--gold-primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.5);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold-primary);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 60px auto 0;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-bottom p {
-            color: rgba(255,255,255,0.4);
-            font-size: 0.85rem;
-        }
-
-        .payment-methods {
-            display: flex;
-            gap: 15px;
-        }
-
-        .payment-methods i {
-            font-size: 1.8rem;
-            color: rgba(255,255,255,0.3);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Responsive */
         @media (max-width: 1024px) {
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .featured-content {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
+            .featured-content { grid-template-columns: 1fr; gap: 50px; }
+            .featured-box { padding: 40px; }
         }
-
         @media (max-width: 768px) {
-            .header {
-                padding: 15px 20px;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .phrases-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-info h2 {
-                font-size: 2rem;
-            }
-
-            .kit-preview {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .products-header-right {
-                align-items: flex-start;
-            }
-
-            .gender-cta-group {
-                justify-content: flex-start;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            .cart-drawer { width: 100%; }
+            .kit-preview { grid-template-columns: repeat(2, 1fr); }
+            .featured-info h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -1183,498 +350,66 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="logo">
+        <div class="logo" onclick="window.scrollTo(0,0)">
             <img src="https://i.ibb.co/Fbxk6mQ3/Design-sem-nome-2.png" alt="Akasha Store">
             <span class="logo-text">AKASHA</span>
-            <span class="logo-badge">STORE</span>
         </div>
         <nav class="nav-menu">
-            <a href="#produtos" class="nav-link">PRODUTOS</a>
-            <a href="#camisetas" class="nav-link">CAMISETAS</a>
-            <a href="#acessorios" class="nav-link">ACESSÓRIOS</a>
-            <a href="#kits" class="nav-link">KITS</a>
-            <button class="cart-btn">
+            <button class="cart-btn" onclick="toggleCart()">
                 <i class="fas fa-shopping-bag"></i>
                 <span>SACOLA</span>
-                <span class="cart-count">0</span>
+                <span class="cart-count" id="headerCount">0</span>
             </button>
         </nav>
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <span class="hero-tag">✦ COLEÇÃO 2025 ✦</span>
-            <h1>
-                <span class="gold">VISTA</span> SUA<br>
-                <span class="outline">FREQUÊNCIA</span>
-            </h1>
-            <p class="hero-subtitle">
-                Moda com propósito. Frases que ressoam. Energia que transforma.
-            </p>
-            <div class="hero-cta">
-                <a href="#produtos" class="btn-primary">VER COLEÇÃO</a>
-                <a href="#kits" class="btn-secondary">KIT MYSTERY</a>
-            </div>
+            <h1><span class="gold">VISTA</span> SUA<br>FREQUÊNCIA</h1>
+            <p>Moda consciente e energia manifestada.</p>
         </div>
     </section>
 
     <!-- Marquee -->
     <div class="marquee-container">
         <div class="marquee">
-            <span class="marquee-item"><i class="fas fa-star"></i> FRETE GRÁTIS ACIMA DE R$299</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> ENERGIA PREMIUM</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> EDIÇÃO LIMITADA</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> ENTREGA PARA TODO BRASIL</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> PAGAMENTO EM ATÉ 12X</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> FRETE GRÁTIS ACIMA DE R$299</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> ENERGIA PREMIUM</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> EDIÇÃO LIMITADA</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> ENTREGA PARA TODO BRASIL</span>
-            <span class="marquee-item"><i class="fas fa-star"></i> PAGAMENTO EM ATÉ 12X</span>
+            <span>✦ FRETE GRÁTIS ACIMA DE R$299</span>
+            <span>✦ 12X NO CARTÃO</span>
+            <span>✦ ENERGIA PREMIUM</span>
+            <span>✦ FRETE GRÁTIS ACIMA DE R$299</span>
+            <span>✦ 12X NO CARTÃO</span>
+            <span>✦ ENERGIA PREMIUM</span>
         </div>
     </div>
 
-    <!-- Categories -->
-    <section class="categories" id="categorias">
+    <!-- Seção de Produtos -->
+    <section class="products-section" id="colecao">
         <div class="section-header">
-            <span class="section-tag">EXPLORE</span>
-            <h2 class="section-title">Categorias</h2>
-            <p class="section-subtitle">Escolha sua frequência</p>
+            <h2 style="font-family:'Cinzel'; font-size: 2rem;">Coleção <span class="gold">Akasha</span></h2>
+            <p style="color: #666;">Selecione sua peça e manifeste seu poder.</p>
         </div>
-
-        <div class="categories-grid">
-            <!-- 1. VESTUÁRIO -->
-            <div class="category-card apparel">
-                <div class="category-bg">
-                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171641/AKASHA_VESTI_xehyz3.mp4" muted loop autoplay playsinline></video>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">VESTUÁRIO</h3>
-                    <span class="category-count">Camisetas, Shorts, Moletons</span>
-                </div>
-            </div>
-            
-            <!-- 2. ACESSÓRIOS -->
-            <div class="category-card accessories">
-                <div class="category-bg">
-                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171495/AKASHA_ACESSORIOS_kfh0fk.mp4" muted loop autoplay playsinline></video>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">ACESSÓRIOS</h3>
-                    <span class="category-count">Bonés, Buckets, Bolsas</span>
-                </div>
-            </div>
-            
-            <!-- 3. KITS MÍSTICOS -->
-            <div class="category-card kits">
-                <div class="category-bg">
-                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171229/generated_video_15_hhvaru.mp4" muted loop autoplay playsinline></video>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">KITS MÍSTICOS</h3>
-                    <span class="category-count">Mystery Box, Rituais</span>
-                </div>
-            </div>
-            
-            <!-- 4. LIFESTYLE -->
-            <div class="category-card lifestyle">
-                <div class="category-bg">
-                    <img src="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765171863/1765171718904-019afc6e-68f9-7eac-b6de-2bffc7b3abeb_y4pmmk.jpg" alt="Lifestyle">
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">LIFESTYLE</h3>
-                    <span class="category-count">Velas, Incensos, Decor</span>
-                </div>
-            </div>
+        <div class="products-grid" id="mainGrid">
+            <!-- Renderizado via JS -->
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products-section" id="produtos">
-        <div class="products-header">
-            <div>
-                <span class="section-tag">PRODUTOS</span>
-                <h2 class="section-title">Coleção Completa</h2>
-            </div>
-            <div class="products-header-right">
-                <div class="filter-tabs">
-                    <button class="filter-tab active">TODOS</button>
-                    <button class="filter-tab">CAMISETAS</button>
-                    <button class="filter-tab">SHORTS</button>
-                    <button class="filter-tab">ACESSÓRIOS</button>
-                    <button class="filter-tab">KITS</button>
-                </div>
-                <div class="gender-cta-group">
-                    <a href="https://SEU-LINK-PARA-COLECAO-DEUSAS.com" class="gender-cta-btn">
-                        <span>DEUSAS</span> · feminino
-                    </a>
-                    <a href="https://SEU-LINK-PARA-COLECAO-GUARDIOES.com" class="gender-cta-btn">
-                        <span>GUARDIÕES</span> · masculino
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="products-grid">
-
-            <!-- Camiseta 1 - Tee Manifestando em Silêncio -->
-            <div class="product-card" id="camisetas">
-                <span class="product-badge hot">HOT</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149787/video_manifestandi_em_silencio_ubqj8x.mp4"
-                        poster="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765150514/1.7_jko9o1.jpg"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"MANIFESTANDO EM SILÊNCIO"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Manifestando em Silêncio</h3>
-                    <p class="product-desc">Algodão premium 100%. Estampa frontal minimalista.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 149,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-manifestando-em-silencio">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Camiseta 2 - Tee Campo Magnético -->
-            <div class="product-card">
-                <span class="product-badge new">NEW</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149796/1_q3bkea.mp4"
-                        poster="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765149792/campo_oficial_otnq0a.jpg"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"MEU CAMPO MAGNÉTICO REPELE GENTE FRACA"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Campo Magnético</h3>
-                    <p class="product-desc">Oversized fit. Frase viral nas costas.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 159,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-campo-magnetico">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Camiseta 3 - Tee Decreto -->
-            <div class="product-card">
-                <span class="product-badge limited">LIMITED</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149766/1_d1p6ez.mp4"
-                        poster="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765149766/enquanto_voce_duvida_oficial_bng7gm.jpg"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"ENQUANTO VOCÊ DUVIDA, EU DECRETO"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Decreto</h3>
-                    <p class="product-desc">Edição limitada. Estampa metalizada dourada.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 189,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-decreto">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Camiseta 4 - Tee Energia Cara -->
-            <div class="product-card">
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149755/2_pumx6w.mp4"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"ENERGIA CARA, ACESSO RESTRITO"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Energia Cara</h3>
-                    <p class="product-desc">Corte regular. Minimalista e impactante.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 149,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-energia-cara">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Camiseta 5 - Tee Vibração Alta -->
-            <div class="product-card">
-                <span class="product-badge exclusive">EXCLUSIVE</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149812/01_bwljyo.mp4"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"VIBRO ALTO, VIVO BEM"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Vibração Alta</h3>
-                    <p class="product-desc">Tecido tecnológico. Frase com efeito holográfico.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 179,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-vibracao-alta">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Camiseta 6 - Tee Autoestima -->
-            <div class="product-card">
-                <span class="product-badge hot">HOT</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765157464/generated_video_11_v5ukdg.mp4"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"NÃO É EGO, É AUTOESTIMA BLINDADA"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">CAMISETA</span>
-                    <h3 class="product-name">Tee Autoestima</h3>
-                    <p class="product-desc">A favorita do público. Estampa frontal bold.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 149,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tee-autoestima-blindada">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Short 1 -->
-            <div class="product-card">
-                <span class="product-badge new">NEW</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164730/short_riqueza_copa_cabana_leeyuw.mp4"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"RIQUEZA É ESTADO MENTAL"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">SHORT</span>
-                    <h3 class="product-name">Short Mindset Rico</h3>
-                    <p class="product-desc">Tactel premium. Bordado lateral dourado.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 129,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/short-mindset-rico">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Short 2 -->
-            <div class="product-card">
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164415/short_meu_silencio_shop_Trim_zjkmch.mp4"
-                        muted loop autoplay playsinline></video>
-                    <div class="product-phrase">"MEU SILÊNCIO É MEU RITUAL"</div>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">SHORT</span>
-                    <h3 class="product-name">Short Ritual</h3>
-                    <p class="product-desc">Conforto total. Símbolo Akasha bordado.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 119,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/short-ritual">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Boné -->
-            <div class="product-card" id="acessorios">
-                <span class="product-badge limited">LIMITED</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/bone_violeta_rc440o.mp4"
-                        muted loop autoplay playsinline></video>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">BONÉ</span>
-                    <h3 class="product-name">Boné Akasha Signature</h3>
-                    <p class="product-desc">Aba curva. Logo bordado em fio dourado.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 99,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/bone-akasha-signature">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bucket -->
-            <div class="product-card">
-                <span class="product-badge hot">HOT</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/buck_f_zscrqn.mp4"
-                        muted loop autoplay playsinline></video>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">BUCKET HAT</span>
-                    <h3 class="product-name">Bucket Hermético</h3>
-                    <p class="product-desc">Estilo streetwear. Símbolos esotéricos no tecido.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 89,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/bucket-hermetico">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bolsa Tote -->
-            <div class="product-card">
-                <span class="product-badge new">NEW</span>
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765167962/minha_aura_yhukft.mp4"
-                        muted loop autoplay playsinline></video>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">BOLSA</span>
-                    <h3 class="product-name">Tote Bag Aura Premium</h3>
-                    <p class="product-desc">100% algodão. Alças reforçadas. Frase estampada.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 79,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/tote-aura-premium">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bolsa Shoulder -->
-            <div class="product-card">
-                <div class="product-actions">
-                    <button class="action-btn"><i class="fas fa-heart"></i></button>
-                    <button class="action-btn"><i class="fas fa-eye"></i></button>
-                </div>
-                <div class="product-image">
-                    <video class="product-media"
-                        src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765169416/generated_video_13_sv2zk4.mp4"
-                        muted loop autoplay playsinline></video>
-                </div>
-                <div class="product-info">
-                    <span class="product-category">BOLSA</span>
-                    <h3 class="product-name">Shoulder Bag Akasha</h3>
-                    <p class="product-desc">Couro sintético premium. Fecho dourado.</p>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <span class="currency">R$</span> 199,90
-                        </div>
-                        <a class="add-to-cart" href="https://SEU-LINK-DE-CHECKOUT.com/shoulder-bag-akasha">COMPRAR</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Featured Kit Section -->
-    <section class="featured-section" id="kits">
+    <!-- ✅ NOVA SEÇÃO: KIT MYSTERY (igual ao site oficial) -->
+    <section class="featured-section" id="mystery-kit">
         <div class="featured-content">
             <div class="featured-image">
                 <div class="featured-box">
                     <div class="kit-preview">
-                        <div class="kit-item">
-                            <i class="fas fa-book-open"></i>
-                            <span>E-BOOK<br>PANACEIA</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-oil-can"></i>
-                            <span>ÓLEOS<br>ESSENCIAIS</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-gem"></i>
-                            <span>CRISTAIS<br>SELECIONADOS</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-pray"></i>
-                            <span>JAPAMALA<br>108 CONTAS</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-scroll"></i>
-                            <span>RITUAIS<br>EXCLUSIVOS</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-headphones"></i>
-                            <span>ÁUDIOS<br>BINAURAIS</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-sun"></i>
-                            <span>LUZ<br>VIOLETA</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-fire"></i>
-                            <span>VELA<br>RITUAL</span>
-                        </div>
-                        <div class="kit-item">
-                            <i class="fas fa-box-open"></i>
-                            <span>CAIXA<br>PREMIUM</span>
-                        </div>
+                        <div class="kit-item"><i class="fas fa-book-open"></i><span>E-BOOK<br>PANACEIA</span></div>
+                        <div class="kit-item"><i class="fas fa-oil-can"></i><span>ÓLEOS<br>ESSENCIAIS</span></div>
+                        <div class="kit-item"><i class="fas fa-gem"></i><span>CRISTAIS<br>SELECIONADOS</span></div>
+                        <div class="kit-item"><i class="fas fa-pray"></i><span>JAPAMALA<br>108 CONTAS</span></div>
+                        <div class="kit-item"><i class="fas fa-scroll"></i><span>RITUAIS<br>EXCLUSIVOS</span></div>
+                        <div class="kit-item"><i class="fas fa-headphones"></i><span>ÁUDIOS<br>BINAURAIS</span></div>
+                        <div class="kit-item"><i class="fas fa-sun"></i><span>LUZ<br>VIOLETA</span></div>
+                        <div class="kit-item"><i class="fas fa-fire"></i><span>VELA<br>RITUAL</span></div>
+                        <div class="kit-item"><i class="fas fa-box-open"></i><span>CAIXA<br>PREMIUM</span></div>
                     </div>
                 </div>
             </div>
@@ -1682,11 +417,13 @@
             <div class="featured-info">
                 <span class="section-tag">EDIÇÃO ESPECIAL</span>
                 <h2><span class="gold">AKASHA</span><br>MYSTERY KIT</h2>
+
                 <p class="featured-desc">
-                    O kit completo para sua jornada de transformação. Todos os elementos sagrados 
-                    reunidos em uma experiência única de despertar. Curadoria exclusiva com itens 
+                    O kit completo para sua jornada de transformação. Todos os elementos sagrados
+                    reunidos em uma experiência única de despertar. Curadoria exclusiva com itens
                     selecionados para potencializar sua prática espiritual.
                 </p>
+
                 <ul class="featured-list">
                     <li><i class="fas fa-check"></i> E-book Panaceia: Cura e Alquimia Interior</li>
                     <li><i class="fas fa-check"></i> 3 Óleos Essenciais (Lavanda, Sândalo, Mirra)</li>
@@ -1698,131 +435,404 @@
                     <li><i class="fas fa-check"></i> Vela de 7 Dias Energizada</li>
                     <li><i class="fas fa-check"></i> Caixa Premium Colecionável</li>
                 </ul>
+
                 <div class="featured-price">
                     <span class="old">R$ 997</span>
                     <span class="price">R$ 497,00</span>
                     <span class="discount">-50%</span>
                 </div>
-                <a href="https://SEU-LINK-DE-CHECKOUT.com/akasha-mystery-kit" class="btn-primary">GARANTIR MEU KIT</a>
+
+                <!-- chama o fluxo do kit (modal do kit) -->
+                <button class="btn-primary" onclick="clickBuy(13)">
+                    <i class="fas fa-lock"></i> GARANTIR MEU KIT
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Phrases Showcase -->
-    <section class="phrases-section">
-        <div class="section-header">
-            <span class="section-tag">FRASES</span>
-            <h2 class="section-title">Vista Sua Mensagem</h2>
-            <p class="section-subtitle">Escolha a frequência que ressoa com você</p>
-        </div>
+    <!-- MODAL DE SELEÇÃO -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <h2 id="mTitle">Produto</h2>
+            <p id="mPrice" style="color: var(--gold-primary); font-weight: 700; margin-bottom: 20px;">R$ 0,00</p>
 
-        <div class="phrases-grid">
-            <div class="phrase-card">
-                <span class="phrase-category viral">VIRAL</span>
-                <p class="phrase-text">"Meu campo magnético repele gente fraca"</p>
-                <div class="phrase-products">
-                    <span class="phrase-product">Camiseta Tee Campo Magnético</span>
-                    <span class="phrase-product">Moletom (breve)</span>
+            <!-- Gênero (Camisetas e Kit) -->
+            <div id="modalGenderStep">
+                <p class="step-label">1. ESCOLHA A MODELAGEM</p>
+                <div class="options-grid">
+                    <div class="opt-btn" onclick="setGender('Masculino/Guardião', this)">GUARDIÕES</div>
+                    <div class="opt-btn" onclick="setGender('Feminino/Deusa', this)">DEUSAS</div>
                 </div>
             </div>
 
-            <div class="phrase-card">
-                <span class="phrase-category toxica">TÓXICA POSITIVA</span>
-                <p class="phrase-text">"Não é ego, é autoestima blindada"</p>
-                <div class="phrase-products">
-                    <span class="phrase-product">Camiseta Tee Autoestima</span>
-                    <span class="phrase-product">Tote Bag Aura Premium</span>
+            <!-- Cores (Apenas Camisetas) -->
+            <div id="modalColorStep" class="hidden">
+                <p class="step-label">2. ESCOLHA A COR</p>
+                <div class="color-row">
+                    <div class="color-circle bg-black" onclick="setColor('Preto', this)"></div>
+                    <div class="color-circle bg-white" onclick="setColor('Branco', this)"></div>
+                    <div class="color-circle bg-violet" onclick="setColor('Violeta', this)"></div>
                 </div>
             </div>
 
-            <div class="phrase-card">
-                <span class="phrase-category hermetica">HERMÉTICA</span>
-                <p class="phrase-text">"Enquanto você duvida, eu decreto"</p>
-                <div class="phrase-products">
-                    <span class="phrase-product">Camiseta Tee Decreto</span>
-                    <span class="phrase-product">Bucket Hermético</span>
+            <!-- Tamanhos (Camisetas, Kit e Shorts) -->
+            <div id="modalSizeStep" class="hidden">
+                <p class="step-label">3. ESCOLHA O TAMANHO</p>
+                <div class="size-row" id="sizeOptions">
+                    <!-- Gerado via JS -->
                 </div>
             </div>
 
-            <div class="phrase-card">
-                <span class="phrase-category esoterica">ESOTÉRICA</span>
-                <p class="phrase-text">"Manifestando em silêncio"</p>
-                <div class="phrase-products">
-                    <span class="phrase-product">Camiseta Tee Manifestando em Silêncio</span>
-                    <span class="phrase-product">Mystery Kit Akasha</span>
+            <button id="btnConfirm" class="btn-add" style="opacity: 0.3; cursor: not-allowed;" onclick="confirmSelection()">ADICIONAR À SACOLA</button>
+        </div>
+    </div>
+
+    <!-- CARRINHO DRAWER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2 style="font-family:'Cinzel';">Sua Sacola</h2>
+            <button class="close-cart-btn" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="cart-list" id="cartItems">
+            <p style="text-align:center; color:#555; margin-top:50px;">
+                <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
+                Sua sacola está vazia
+            </p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cep-input-group">
+                <input type="text" id="cartCep" placeholder="Digite seu CEP" maxlength="9" oninput="formatCEP(this)">
+                <i class="fas fa-spinner cep-loading" id="cepLoader"></i>
+            </div>
+
+            <div class="shipping-info" id="shippingInfo">
+                <div style="display:flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>📦 Frete via PAC:</span>
+                    <span id="shippingValue" style="font-weight: 700;">R$ 0,00</span>
                 </div>
+                <small style="color: #888;">Prazo de entrega: 5-8 dias úteis</small>
             </div>
+
+            <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
+                <span>Subtotal:</span>
+                <span id="subtotalDisplay">R$ 0,00</span>
+            </div>
+
+            <div style="display:flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: var(--gold-primary);">
+                <span>Total:</span>
+                <span id="totalDisplay">R$ 0,00</span>
+            </div>
+
+            <button class="btn-checkout" onclick="checkoutMercadoPago()" id="checkoutBtn">
+                <i class="fas fa-lock"></i> PAGAR COM SEGURANÇA
+            </button>
         </div>
-    </section>
+    </div>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="newsletter-content">
-            <h2>Mantenha sua frequência alta</h2>
-            <p>Receba em primeira mão lançamentos, coleções limitadas e rituais da Akasha diretamente no seu e-mail.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Digite seu melhor e-mail" required>
-                <button type="submit" class="btn-primary">ENTRAR NA LISTA VIP</button>
-            </form>
-        </div>
-    </section>
+    <script>
+        const MP_TOKEN = "APP_USR-5825681340748019-121000-fc894cfe8189fff45937c635a2008444-1919866585";
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="https://i.ibb.co/Fbxk6mQ3/Design-sem-nome-2.png" alt="Akasha Store">
-                <p>
-                    Akasha Store é mais do que moda: é um portal para vestir a sua frequência,
-                    materializar seus decretos e ancorar a energia que você escolhe vibrar no mundo.
-                </p>
-                <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
+        const catalog = [
+            // Camisetas
+            { id: 1, type: 'shirt', name: "Tee Manifestando em Silêncio", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149787/video_manifestandi_em_silencio_ubqj8x.mp4", media: 'video' },
+            { id: 2, type: 'shirt', name: "Tee Campo Magnético", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149796/1_q3bkea.mp4", media: 'video' },
+            { id: 3, type: 'shirt', name: "Tee Decreto", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149766/1_d1p6ez.mp4", media: 'video' },
+            { id: 4, type: 'shirt', name: "Tee Energia Cara", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149755/2_pumx6w.mp4", media: 'video' },
+            { id: 5, type: 'shirt', name: "Tee Autoestima", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765157464/generated_video_11_v5ukdg.mp4", media: 'video' },
 
-            <div class="footer-column">
-                <h4>LOJA</h4>
-                <ul class="footer-links">
-                    <li><a href="#produtos">Coleção 2025</a></li>
-                    <li><a href="#camisetas">Camisetas</a></li>
-                    <li><a href="#acessorios">Acessórios</a></li>
-                    <li><a href="#kits">Kits Místicos</a></li>
-                </ul>
-            </div>
+            // ✅ SUBSTITUIÇÃO: entrou a camiseta "VIBRO ALTO, VIVO BEM"
+            { id: 14, type: 'shirt', name: "Tee Vibro Alto, Vivo Bem", price: 179.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149812/01_bwljyo.mp4", media: 'video' },
 
-            <div class="footer-column">
-                <h4>SUPORTE</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Dúvidas Frequentes</a></li>
-                    <li><a href="#">Envio &amp; Prazo de Entrega</a></li>
-                    <li><a href="#">Trocas &amp; Devoluções</a></li>
-                    <li><a href="#">Fale Conosco</a></li>
-                </ul>
-            </div>
+            // Acessórios / Shorts
+            { id: 6, type: 'uni', name: "Boné Signature", price: 99.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/bone_violeta_rc440o.mp4", media: 'video' },
+            { id: 7, type: 'short', name: "Short Riqueza", price: 119.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164730/short_riqueza_copa_cabana_leeyuw.mp4", media: 'video' },
+            { id: 8, type: 'short', name: "Short Ritual", price: 119.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164415/short_meu_silencio_shop_Trim_zjkmch.mp4", media: 'video' },
+            { id: 9, type: 'uni', name: "Bucket Hermético", price: 89.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/buck_f_zscrqn.mp4", media: 'video' },
+            { id: 10, type: 'uni', name: "Tote Bag Aura Premium", price: 79.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765167962/minha_aura_yhukft.mp4", media: 'video' },
+            { id: 11, type: 'uni', name: "Shoulder Bag Akasha", price: 199.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765169416/generated_video_13_sv2zk4.mp4", media: 'video' },
 
-            <div class="footer-column">
-                <h4>INSTITUCIONAL</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Quem Somos</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                    <li><a href="#">Termos de Uso</a></li>
-                </ul>
-            </div>
-        </div>
+          
+            // Kit
+            { id: 13, type: 'kit', name: "Kit Akasha Mystery", price: 497.00, img: "https://i.ibb.co/Fbxk6mQ3/Design-sem-nome-2.png", media: 'image' }
+        ];
 
-        <div class="footer-bottom">
-            <p>© 2025 Akasha Store · Todos os direitos reservados.</p>
-            <div class="payment-methods">
-                <i class="fab fa-cc-mastercard"></i>
-                <i class="fab fa-cc-visa"></i>
-                <i class="fab fa-cc-amex"></i>
-                <i class="fab fa-cc-paypal"></i>
-            </div>
-        </div>
-    </footer>
+        let cart = [];
+        let globalShipping = 0;
+        let tempItem = {};
 
+        function init() {
+            const grid = document.getElementById('mainGrid');
+
+            // mantém a renderização dinâmica intacta (não inclui o kit na grid)
+            grid.innerHTML = catalog
+                .filter(p => p.id !== 13)
+                .map(p => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            ${p.media === 'video'
+                                ? `<video src="${p.img}" muted loop autoplay playsinline></video>`
+                                : `<img src="${p.img}" alt="${p.name}">`}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${p.name}</div>
+                            <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
+                            <button class="btn-add" onclick="clickBuy(${p.id})">
+                                <i class="fas fa-cart-plus"></i> ADICIONAR
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        function clickBuy(id) {
+            const product = catalog.find(p => p.id === id);
+            tempItem = { ...product, gender: '', color: '', size: '' };
+
+            if (product.type === 'uni') {
+                addToCart({ ...tempItem, variant: 'Tamanho Único' });
+                return;
+            }
+
+            openModal(product);
+        }
+
+        function openModal(p) {
+            document.getElementById('mTitle').innerText = p.name;
+            document.getElementById('mPrice').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
+            document.getElementById('productModal').classList.add('active');
+
+            // Reset modal states
+            document.querySelectorAll('.opt-btn, .color-circle, .size-box').forEach(el => el.classList.remove('selected'));
+            document.getElementById('modalGenderStep').classList.toggle('hidden', p.type === 'short');
+            document.getElementById('modalColorStep').classList.add('hidden');
+            document.getElementById('modalSizeStep').classList.toggle('hidden', p.type !== 'short');
+            document.getElementById('btnConfirm').style.opacity = "0.3";
+            document.getElementById('btnConfirm').style.cursor = "not-allowed";
+
+            if (p.type === 'short') {
+                renderSizes(['P', 'M', 'G']); // shorts apenas P M G
+            } else if (p.type === 'kit') {
+                // Kit: cor fixa conforme o kit
+                tempItem.color = 'Violeta (Exclusiva do Kit)';
+                renderSizes(['P', 'M', 'G', 'GG']);
+            } else {
+                // camisetas
+                renderSizes(['P', 'M', 'G', 'GG']);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        function setGender(val, el) {
+            tempItem.gender = val;
+            document.querySelectorAll('#modalGenderStep .opt-btn').forEach(b => b.classList.remove('selected'));
+            el.classList.add('selected');
+
+            if (tempItem.type === 'shirt') {
+                document.getElementById('modalColorStep').classList.remove('hidden');
+            } else if (tempItem.type === 'kit') {
+                document.getElementById('modalSizeStep').classList.remove('hidden');
+            }
+        }
+
+        function setColor(val, el) {
+            tempItem.color = val;
+            document.querySelectorAll('.color-circle').forEach(b => b.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('modalSizeStep').classList.remove('hidden');
+        }
+
+        function renderSizes(list) {
+            const area = document.getElementById('sizeOptions');
+            area.innerHTML = list.map(s => `<div class="size-box" onclick="setSize('${s}', this)">${s}</div>`).join('');
+        }
+
+        function setSize(val, el) {
+            tempItem.size = val;
+            document.querySelectorAll('.size-box').forEach(b => b.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('btnConfirm').style.opacity = "1";
+            document.getElementById('btnConfirm').style.cursor = "pointer";
+        }
+
+        function confirmSelection() {
+            if (document.getElementById('btnConfirm').style.opacity !== "1") return;
+
+            let desc = "";
+            if (tempItem.type === 'shirt') desc = `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}`;
+            else if (tempItem.type === 'short') desc = `Tamanho: ${tempItem.size}`;
+            else if (tempItem.type === 'kit') desc = `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}`;
+            else desc = `${tempItem.gender} | Tam ${tempItem.size}`;
+
+            addToCart({ ...tempItem, variant: desc });
+            closeModal();
+        }
+
+        function addToCart(item) {
+            cart.push({ ...item, uid: Date.now() + Math.random() });
+            updateCartUI();
+            if (!document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+        }
+
+        function updateCartUI() {
+            document.getElementById('headerCount').innerText = cart.length;
+            const list = document.getElementById('cartItems');
+
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <p style="text-align:center; color:#555; margin-top:50px;">
+                        <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
+                        Sua sacola está vazia
+                    </p>`;
+            } else {
+                list.innerHTML = cart.map(i => `
+                    <div class="cart-item">
+                        <div style="flex: 1;">
+                            <div style="font-weight:700; font-size:0.95rem; margin-bottom: 5px;">${i.name}</div>
+                            <div style="font-size:0.75rem; color:#888; margin-bottom: 8px;">${i.variant}</div>
+                            <div style="color:var(--gold-primary); font-weight:700; font-size: 1.1rem;">R$ ${i.price.toFixed(2).replace('.',',')}</div>
+                        </div>
+                        <button onclick="removeItem(${i.uid})" style="background: none; border: none; color:#ff4444; cursor:pointer; padding: 10px; transition: 0.3s;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            updateTotals();
+        }
+
+        function removeItem(uid) {
+            cart = cart.filter(i => i.uid !== uid);
+            if (cart.length === 0) {
+                globalShipping = 0;
+                document.getElementById('shippingInfo').classList.remove('active');
+                document.getElementById('cartCep').value = '';
+            }
+            updateCartUI();
+        }
+
+        // Formatar CEP automaticamente
+        function formatCEP(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 5) {
+                value = value.substring(0, 5) + '-' + value.substring(5, 8);
+            }
+            input.value = value;
+
+            // Auto calcular quando tiver 8 dígitos
+            if (value.replace(/\D/g, '').length === 8) {
+                autoCalculateShipping();
+            }
+        }
+
+        function autoCalculateShipping() {
+            const cepInput = document.getElementById('cartCep');
+            const cep = cepInput.value.replace(/\D/g, '');
+
+            if (cep.length !== 8) return;
+
+            // Mostrar loading
+            document.getElementById('cepLoader').classList.add('active');
+
+            // Simular delay de cálculo
+            setTimeout(() => {
+                const prefix = parseInt(cep.substring(0, 2));
+
+                if (prefix >= 1 && prefix <= 19) globalShipping = 19.90;       // SP
+                else if (prefix >= 20 && prefix <= 29) globalShipping = 24.90; // RJ/ES
+                else if (prefix >= 30 && prefix <= 39) globalShipping = 26.90; // MG
+                else if (prefix >= 80 && prefix <= 99) globalShipping = 29.90; // Sul
+                else globalShipping = 35.00;                                   // Resto
+
+                document.getElementById('shippingValue').innerText = `R$ ${globalShipping.toFixed(2).replace('.', ',')}`;
+                document.getElementById('shippingInfo').classList.add('active');
+                document.getElementById('cepLoader').classList.remove('active');
+
+                updateTotals();
+            }, 800);
+        }
+
+        function updateTotals() {
+            const subtotal = cart.reduce((acc, i) => acc + i.price, 0);
+            const total = subtotal + globalShipping;
+
+            document.getElementById('subtotalDisplay').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            document.getElementById('totalDisplay').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+
+            const btn = document.getElementById('checkoutBtn');
+            btn.disabled = !(cart.length > 0 && globalShipping > 0);
+        }
+
+        async function checkoutMercadoPago() {
+            if (cart.length === 0) return alert("Sua sacola está vazia!");
+            if (globalShipping === 0) {
+                document.getElementById('cartCep').focus();
+                return alert("Por favor, digite seu CEP para calcular o frete.");
+            }
+
+            const btn = document.getElementById('checkoutBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSANDO...';
+            btn.disabled = true;
+
+            const items = cart.map(i => ({
+                title: i.name,
+                description: i.variant,
+                quantity: 1,
+                currency_id: 'BRL',
+                unit_price: i.price
+            }));
+
+            const preference = {
+                items,
+                shipments: { cost: globalShipping, mode: 'not_specified' },
+                back_urls: {
+                    success: window.location.href,
+                    failure: window.location.href,
+                    pending: window.location.href
+                },
+                auto_return: "approved"
+            };
+
+            try {
+                const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${MP_TOKEN}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(preference)
+                });
+
+                const data = await response.json();
+
+                if (data.init_point) {
+                    window.location.href = data.init_point;
+                } else {
+                    alert("Erro ao processar pagamento. Tente novamente.");
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                alert("Erro ao conectar com Mercado Pago.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        init();
+    </script>
 </body>
 </html>
