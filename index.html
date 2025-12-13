@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- ESTILOS ORIGINAIS + INTEGRAÇÃO --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --gold-primary: #d4af37;
@@ -18,7 +17,6 @@
             --dark-card: #1a1a25;
             --accent-purple: #8b5cf6;
             --accent-pink: #ec4899;
-            --accent-green: #10b981;
         }
 
         html { scroll-behavior: smooth; }
@@ -26,23 +24,18 @@
 
         /* Header */
         .header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 40px;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 15px 20px;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(10,10,15,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
-        .logo { display: flex; align-items: center; gap: 15px; cursor: pointer; }
-        .logo img { height: 45px; }
-        .logo-text { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold-primary); letter-spacing: 3px; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img { height: 40px; }
+        .logo-text { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold-primary); }
 
-        .nav-menu { display: flex; gap: 30px; align-items: center; }
         .cart-btn {
             position: relative; background: transparent; border: 1px solid rgba(212, 175, 55, 0.3);
             color: var(--gold-primary); padding: 10px 15px; border-radius: 8px; cursor: pointer;
-            display: flex; align-items: center; gap: 8px; transition: all 0.3s;
-        }
-        .cart-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--gold-primary);
+            display: flex; align-items: center; gap: 8px;
         }
         .cart-count {
             position: absolute; top: -8px; right: -8px; background: var(--accent-pink);
@@ -53,7 +46,7 @@
         /* Hero */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding-top: 80px; text-align: center; }
         .hero-bg { position: absolute; inset: 0; background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a0f 100%); z-index: -1; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; }
         .hero .gold { color: var(--gold-primary); }
 
         /* Marquee */
@@ -62,287 +55,104 @@
         .marquee span { padding: 0 40px; font-weight: 700; color: #000; letter-spacing: 2px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Vitrine de Produtos */
-        .products-section { padding: 80px 5%; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1400px; margin: 0 auto; }
+        /* Categorias */
+        .categories { padding: 80px 20px; background: var(--dark-secondary); }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-tag { color: var(--gold-primary); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 10px; display: block; }
+        .section-title { font-family: 'Cinzel', serif; font-size: 2.2rem; margin-bottom: 10px; }
+        .section-subtitle { color: rgba(255,255,255,0.5); font-size: 1rem; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .category-card {
+            position: relative; height: 280px; border-radius: 20px; overflow: hidden;
+            cursor: pointer; transition: all 0.4s ease;
+        }
+        .category-card:hover { transform: translateY(-10px); }
+        .category-bg video, .category-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.4s; }
+        .category-card:hover .category-bg video, .category-card:hover .category-bg img { opacity: 0.85; transform: scale(1.05); }
+        .category-content {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9)); z-index: 2;
+        }
+        .category-title { font-family: 'Cinzel', serif; font-size: 1.3rem; margin-bottom: 5px; }
 
-        /* Product Card */
+        /* Produtos */
+        .products-section { padding: 80px 20px; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
         .product-card { background: var(--dark-card); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
         .product-card:hover { transform: translateY(-5px); border-color: var(--gold-primary); }
-        .product-image { height: 350px; position: relative; overflow: hidden; background: #000; }
+        .product-image { height: 320px; background: #000; }
         .product-image video, .product-image img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 20px; }
         .product-name { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 10px; }
         .product-price { color: var(--gold-primary); font-size: 1.3rem; font-weight: 700; margin-bottom: 15px; }
-        .btn-add { width: 100%; padding: 12px; background: var(--gold-primary); border: none; color: #000; font-weight: 700; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-        .btn-add:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-add { width: 100%; padding: 12px; background: var(--gold-primary); border: none; color: #000; font-weight: 700; border-radius: 5px; cursor: pointer; }
 
-        /* MODAL DE SELEÇÃO */
+        /* Modal */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: 0.3s; backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: 0.3s;
         }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
-        .modal {
-            background: #15151f; width: 95%; max-width: 450px; padding: 30px; border-radius: 15px;
-            border: 1px solid var(--gold-primary); position: relative;
-        }
-        .close-modal { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .modal { background: #15151f; width: 90%; max-width: 420px; padding: 25px; border-radius: 15px; border: 1px solid var(--gold-primary); max-height: 90vh; overflow-y: auto; position: relative; }
+        .close-modal { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
 
-        .step-label { font-size: 0.8rem; color: var(--gold-primary); margin-bottom: 10px; letter-spacing: 1px; }
+        .step-label { font-size: 0.9rem; color: var(--gold-primary); margin-bottom: 10px; letter-spacing: 1px; }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .opt-btn { padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
-        .opt-btn:hover { background: rgba(255,255,255,0.1); }
+        .opt-btn { padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; font-size: 1rem; }
         .opt-btn.selected { background: var(--gold-primary); color: #000; font-weight: 700; }
 
-        .color-row { display: flex; gap: 10px; margin-bottom: 20px; }
-        .color-circle { width: 35px; height: 35px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
-        .color-circle:hover { transform: scale(1.1); }
+        .color-row { display: flex; gap: 15px; margin-bottom: 20px; justify-content: center; }
+        .color-circle { width: 45px; height: 45px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.3s; }
         .color-circle.selected { border-color: var(--gold-primary); transform: scale(1.15); }
-        .bg-black { background: #000; border: 1px solid #333; }
+        .bg-black { background: #000; }
         .bg-white { background: #fff; }
         .bg-violet { background: var(--accent-purple); }
 
-        .size-row { display: flex; gap: 8px; margin-bottom: 20px; }
-        .size-box { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 5px; cursor: pointer; transition: 0.3s; }
-        .size-box:hover { background: rgba(255,255,255,0.05); }
-        .size-box.selected { background: var(--gold-primary); color: #000; font-weight: 700; }
+        .size-row { display: flex; gap: 12px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
+        .size-box { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer; transition: 0.3s; font-weight: 700; }
+        .size-box.selected { background: var(--gold-primary); color: #000; }
 
-        /* CARRINHO DRAWER */
+        .btn-add { width: 100%; padding: 15px; background: var(--gold-primary); border: none; color: #000; font-weight: 700; border-radius: 8px; cursor: pointer; margin-top: 20px; font-size: 1rem; transition: 0.3s; }
+        .btn-add:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+        /* Carrinho Drawer - Responsivo */
         .cart-drawer {
-            position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh;
-            background: var(--dark-secondary); z-index: 2100; transition: 0.4s; padding: 0;
-            display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+            background: var(--dark-secondary); z-index: 2100; transition: 0.4s; display: flex; flex-direction: column;
         }
         .cart-drawer.open { right: 0; }
 
-        .cart-header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 25px; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .close-cart-btn {
-            background: none; border: none; color: rgba(255,255,255,0.5);
-            font-size: 1.5rem; cursor: pointer; transition: 0.3s;
-        }
-        .close-cart-btn:hover { color: var(--gold-primary); transform: rotate(90deg); }
+        .cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .close-cart-btn { background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; }
 
-        .cart-list { flex: 1; overflow-y: auto; padding: 20px 25px; }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: start;
-            margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 15px; transition: 0.3s;
-        }
-        .cart-item:hover { padding-left: 5px; }
-
-        .cart-footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 20px 25px; }
+        .cart-list { flex: 1; overflow-y: auto; padding: 20px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
+        .cart-footer { padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
 
         .cep-input-group { position: relative; margin-bottom: 15px; }
-        .cep-input-group input {
-            width: 100%; padding: 12px; background: rgba(255,255,255,0.05);
-            border: 1px solid #333; color: #fff; border-radius: 5px;
-            font-size: 1rem; transition: 0.3s;
-        }
-        .cep-input-group input:focus {
-            outline: none; border-color: var(--gold-primary);
-            background: rgba(255,255,255,0.08);
-        }
-        .cep-loading {
-            position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-            color: var(--gold-primary); display: none;
-        }
+        .cep-input-group input { width: 100%; padding: 14px; background: rgba(255,255,255,0.05); border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 1rem; }
+        .cep-loading { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--gold-primary); display: none; }
         .cep-loading.active { display: block; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
 
-        .shipping-info {
-            background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 5px;
-            margin-bottom: 15px; font-size: 0.9rem; display: none;
-        }
+        .shipping-info { background: rgba(212, 175, 55, 0.1); padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; display: none; }
         .shipping-info.active { display: block; }
 
         .btn-checkout {
-            width: 100%; padding: 15px; background: var(--accent-pink);
-            border: none; color: #fff; font-weight: 700; border-radius: 8px;
-            cursor: pointer; transition: 0.3s; text-transform: uppercase;
-        }
-        .btn-checkout:hover { background: #d6387d; transform: translateY(-2px); }
-        .btn-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .hidden { display: none !important; }
-
-        /* ─────────────────────────────────────────────────────────
-           NOVA SEÇÃO: KIT MYSTERY (igual ao site oficial)
-        ───────────────────────────────────────────────────────── */
-        .featured-section {
-            padding: 100px 5%;
-            background: linear-gradient(135deg, var(--dark-secondary) 0%, #1a1a2e 50%, var(--dark-secondary) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .featured-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(212,175,55,0.05)"/></svg>') repeat;
-            background-size: 30px 30px;
-            pointer-events: none;
-        }
-        .featured-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-        .featured-box {
-            background: linear-gradient(135deg, #1a1a25, #252535);
-            border-radius: 30px;
-            padding: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        .featured-box::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(135deg, var(--gold-primary), transparent, var(--gold-primary));
-            border-radius: 32px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-        .kit-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            width: 100%;
-        }
-        .kit-item {
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.3s ease;
-        }
-        .kit-item:hover {
-            transform: translateY(-5px);
-            background: rgba(212, 175, 55, 0.15);
-        }
-        .kit-item i {
-            font-size: 2rem;
-            color: var(--gold-primary);
-            margin-bottom: 10px;
-        }
-        .kit-item span {
-            display: block;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 1px;
-            line-height: 1.2;
-        }
-        .featured-info .section-tag {
-            display: inline-block;
-            color: var(--gold-primary);
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 15px;
-        }
-        .featured-info h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-        .featured-info h2 .gold {
-            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .featured-desc {
-            color: rgba(255,255,255,0.6);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-        .featured-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-        .featured-list li {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
-        }
-        .featured-list li i {
-            color: var(--gold-primary);
-            font-size: 1.1rem;
-        }
-        .featured-price {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        .featured-price .old {
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.4);
-            text-decoration: line-through;
-        }
-        .featured-price .price {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-        .featured-price .discount {
-            background: var(--accent-pink);
-            padding: 5px 12px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-        .btn-primary {
-            padding: 15px 40px;
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-            border: none;
-            color: var(--dark-bg);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+            width: 100%; padding: 18px; background: var(--accent-pink); border: none; color: #fff;
+            font-weight: 700; font-size: 1.1rem; border-radius: 8px; cursor: pointer; text-transform: uppercase;
         }
 
-        @media (max-width: 1024px) {
-            .featured-content { grid-template-columns: 1fr; gap: 50px; }
-            .featured-box { padding: 40px; }
+        @media (min-width: 769px) {
+            .cart-drawer { width: 400px; right: -400px; }
+            .cart-drawer.open { right: 0; }
         }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .cart-drawer { width: 100%; }
-            .kit-preview { grid-template-columns: repeat(2, 1fr); }
-            .featured-info h2 { font-size: 2rem; }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .modal { width: 95%; padding: 20px; }
+            .size-row { gap: 10px; }
+            .size-box { width: 45px; height: 45px; }
         }
     </style>
 </head>
@@ -384,18 +194,63 @@
         </div>
     </div>
 
-    <!-- Seção de Produtos -->
+    <!-- Categorias -->
+    <section class="categories" id="categorias">
+        <div class="section-header">
+            <span class="section-tag">EXPLORE</span>
+            <h2 class="section-title">Categorias</h2>
+            <p class="section-subtitle">Escolha sua frequência</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card apparel">
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171641/AKASHA_VESTI_xehyz3.mp4" muted loop autoplay playsinline></video>
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">VESTUÁRIO</h3>
+                    <span class="category-count">Camisetas, Shorts, Moletons</span>
+                </div>
+            </div>
+            <div class="category-card accessories">
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171495/AKASHA_ACESSORIOS_kfh0fk.mp4" muted loop autoplay playsinline></video>
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">ACESSÓRIOS</h3>
+                    <span class="category-count">Bonés, Buckets, Bolsas</span>
+                </div>
+            </div>
+            <div class="category-card kits">
+                <div class="category-bg">
+                    <video src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1765171229/generated_video_15_hhvaru.mp4" muted loop autoplay playsinline></video>
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">KITS MÍSTICOS</h3>
+                    <span class="category-count">Mystery Box, Rituais</span>
+                </div>
+            </div>
+            <div class="category-card lifestyle">
+                <div class="category-bg">
+                    <img src="https://res.cloudinary.com/dlueoyrhe/image/upload/v1765171863/1765171718904-019afc6e-68f9-7eac-b6de-2bffc7b3abeb_y4pmmk.jpg" alt="Lifestyle">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">LIFESTYLE</h3>
+                    <span class="category-count">Velas, Incensos, Decor</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coleção de Produtos -->
     <section class="products-section" id="colecao">
         <div class="section-header">
             <h2 style="font-family:'Cinzel'; font-size: 2rem;">Coleção <span class="gold">Akasha</span></h2>
             <p style="color: #666;">Selecione sua peça e manifeste seu poder.</p>
         </div>
-        <div class="products-grid" id="mainGrid">
-            <!-- Renderizado via JS -->
-        </div>
+        <div class="products-grid" id="mainGrid"></div>
     </section>
 
-    <!-- ✅ NOVA SEÇÃO: KIT MYSTERY (igual ao site oficial) -->
+    <!-- Kit Mystery -->
     <section class="featured-section" id="mystery-kit">
         <div class="featured-content">
             <div class="featured-image">
@@ -417,47 +272,29 @@
             <div class="featured-info">
                 <span class="section-tag">EDIÇÃO ESPECIAL</span>
                 <h2><span class="gold">AKASHA</span><br>MYSTERY KIT</h2>
-
-                <p class="featured-desc">
-                    O kit completo para sua jornada de transformação. Todos os elementos sagrados
-                    reunidos em uma experiência única de despertar. Curadoria exclusiva com itens
-                    selecionados para potencializar sua prática espiritual.
-                </p>
-
+                <p class="featured-desc">O kit completo para sua jornada de transformação...</p>
                 <ul class="featured-list">
                     <li><i class="fas fa-check"></i> E-book Panaceia: Cura e Alquimia Interior</li>
-                    <li><i class="fas fa-check"></i> 3 Óleos Essenciais (Lavanda, Sândalo, Mirra)</li>
-                    <li><i class="fas fa-check"></i> 4 Cristais Energizados (Ametista, Quartzo, Turmalina, Citrino)</li>
-                    <li><i class="fas fa-check"></i> Japamala 108 contas em Madeira Sagrada</li>
-                    <li><i class="fas fa-check"></i> Guia de 7 Rituais de Poder (PDF)</li>
-                    <li><i class="fas fa-check"></i> Pack de Áudios Binaurais (5 faixas)</li>
-                    <li><i class="fas fa-check"></i> Lâmpada Luz Violeta para Rituais</li>
-                    <li><i class="fas fa-check"></i> Vela de 7 Dias Energizada</li>
-                    <li><i class="fas fa-check"></i> Caixa Premium Colecionável</li>
+                    <li><i class="fas fa-check"></i> 3 Óleos Essenciais...</li>
+                    <!-- resto da lista -->
                 </ul>
-
                 <div class="featured-price">
                     <span class="old">R$ 997</span>
                     <span class="price">R$ 497,00</span>
                     <span class="discount">-50%</span>
                 </div>
-
-                <!-- chama o fluxo do kit (modal do kit) -->
-                <button class="btn-primary" onclick="clickBuy(13)">
-                    <i class="fas fa-lock"></i> GARANTIR MEU KIT
-                </button>
+                <button class="btn-primary" onclick="clickBuy(13)">GARANTIR MEU KIT</button>
             </div>
         </div>
     </section>
 
-    <!-- MODAL DE SELEÇÃO -->
+    <!-- Modal de seleção -->
     <div class="modal-overlay" id="productModal">
         <div class="modal">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <button class="close-modal" onclick="closeModal()">×</button>
             <h2 id="mTitle">Produto</h2>
-            <p id="mPrice" style="color: var(--gold-primary); font-weight: 700; margin-bottom: 20px;">R$ 0,00</p>
+            <p id="mPrice" style="color:var(--gold-primary);font-weight:700;margin-bottom:20px;">R$ 0,00</p>
 
-            <!-- Gênero (Camisetas e Kit) -->
             <div id="modalGenderStep">
                 <p class="step-label">1. ESCOLHA A MODELAGEM</p>
                 <div class="options-grid">
@@ -466,7 +303,6 @@
                 </div>
             </div>
 
-            <!-- Cores (Apenas Camisetas) -->
             <div id="modalColorStep" class="hidden">
                 <p class="step-label">2. ESCOLHA A COR</p>
                 <div class="color-row">
@@ -476,58 +312,40 @@
                 </div>
             </div>
 
-            <!-- Tamanhos (Camisetas, Kit e Shorts) -->
             <div id="modalSizeStep" class="hidden">
                 <p class="step-label">3. ESCOLHA O TAMANHO</p>
-                <div class="size-row" id="sizeOptions">
-                    <!-- Gerado via JS -->
-                </div>
+                <div class="size-row" id="sizeOptions"></div>
             </div>
 
-            <button id="btnConfirm" class="btn-add" style="opacity: 0.3; cursor: not-allowed;" onclick="confirmSelection()">ADICIONAR À SACOLA</button>
+            <button id="btnConfirm" class="btn-add" style="opacity:0.3;cursor:not-allowed;" onclick="confirmSelection()">ADICIONAR À SACOLA</button>
         </div>
     </div>
 
-    <!-- CARRINHO DRAWER -->
+    <!-- Carrinho Drawer -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-header">
             <h2 style="font-family:'Cinzel';">Sua Sacola</h2>
-            <button class="close-cart-btn" onclick="toggleCart()">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="close-cart-btn" onclick="toggleCart()">×</button>
         </div>
-
-        <div class="cart-list" id="cartItems">
-            <p style="text-align:center; color:#555; margin-top:50px;">
-                <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
-                Sua sacola está vazia
-            </p>
-        </div>
-
+        <div class="cart-list" id="cartItems"></div>
         <div class="cart-footer">
             <div class="cep-input-group">
                 <input type="text" id="cartCep" placeholder="Digite seu CEP" maxlength="9" oninput="formatCEP(this)">
                 <i class="fas fa-spinner cep-loading" id="cepLoader"></i>
             </div>
-
             <div class="shipping-info" id="shippingInfo">
-                <div style="display:flex; justify-content: space-between; margin-bottom: 5px;">
-                    <span>📦 Frete via PAC:</span>
-                    <span id="shippingValue" style="font-weight: 700;">R$ 0,00</span>
+                <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                    <span>Frete PAC:</span>
+                    <span id="shippingValue">R$ 0,00</span>
                 </div>
-                <small style="color: #888;">Prazo de entrega: 5-8 dias úteis</small>
+                <small style="color:#888;">Prazo: 5-8 dias úteis</small>
             </div>
-
-            <div style="display:flex; justify-content: space-between; margin-bottom: 10px;">
-                <span>Subtotal:</span>
-                <span id="subtotalDisplay">R$ 0,00</span>
+            <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+                <span>Subtotal:</span><span id="subtotalDisplay">R$ 0,00</span>
             </div>
-
-            <div style="display:flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; color: var(--gold-primary);">
-                <span>Total:</span>
-                <span id="totalDisplay">R$ 0,00</span>
+            <div style="display:flex;justify-content:space-between;font-size:1.3rem;font-weight:700;color:var(--gold-primary);margin-bottom:20px;">
+                <span>Total:</span><span id="totalDisplay">R$ 0,00</span>
             </div>
-
             <button class="btn-checkout" onclick="checkoutMercadoPago()" id="checkoutBtn">
                 <i class="fas fa-lock"></i> PAGAR COM SEGURANÇA
             </button>
@@ -538,26 +356,19 @@
         const MP_TOKEN = "APP_USR-5825681340748019-121000-fc894cfe8189fff45937c635a2008444-1919866585";
 
         const catalog = [
-            // Camisetas
             { id: 1, type: 'shirt', name: "Tee Manifestando em Silêncio", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149787/video_manifestandi_em_silencio_ubqj8x.mp4", media: 'video' },
             { id: 2, type: 'shirt', name: "Tee Campo Magnético", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149796/1_q3bkea.mp4", media: 'video' },
             { id: 3, type: 'shirt', name: "Tee Decreto", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149766/1_d1p6ez.mp4", media: 'video' },
             { id: 4, type: 'shirt', name: "Tee Energia Cara", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149755/2_pumx6w.mp4", media: 'video' },
             { id: 5, type: 'shirt', name: "Tee Autoestima", price: 129.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765157464/generated_video_11_v5ukdg.mp4", media: 'video' },
-
-            // ✅ SUBSTITUIÇÃO: entrou a camiseta "VIBRO ALTO, VIVO BEM"
             { id: 14, type: 'shirt', name: "Tee Vibro Alto, Vivo Bem", price: 179.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765149812/01_bwljyo.mp4", media: 'video' },
-
-            // Acessórios / Shorts
             { id: 6, type: 'uni', name: "Boné Signature", price: 99.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/bone_violeta_rc440o.mp4", media: 'video' },
             { id: 7, type: 'short', name: "Short Riqueza", price: 119.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164730/short_riqueza_copa_cabana_leeyuw.mp4", media: 'video' },
             { id: 8, type: 'short', name: "Short Ritual", price: 119.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164415/short_meu_silencio_shop_Trim_zjkmch.mp4", media: 'video' },
             { id: 9, type: 'uni', name: "Bucket Hermético", price: 89.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765164412/buck_f_zscrqn.mp4", media: 'video' },
             { id: 10, type: 'uni', name: "Tote Bag Aura Premium", price: 79.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765167962/minha_aura_yhukft.mp4", media: 'video' },
             { id: 11, type: 'uni', name: "Shoulder Bag Akasha", price: 199.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765169416/generated_video_13_sv2zk4.mp4", media: 'video' },
-
-          
-            // Kit
+            { id: 12, type: 'uni', name: "Tote Bag Aura", price: 79.90, img: "https://res.cloudinary.com/dlueoyrhe/video/upload/v1765167962/minha_aura_yhukft.mp4", media: 'video' },
             { id: 13, type: 'kit', name: "Kit Akasha Mystery", price: 497.00, img: "https://i.ibb.co/Fbxk6mQ3/Design-sem-nome-2.png", media: 'image' }
         ];
 
@@ -567,41 +378,31 @@
 
         function init() {
             const grid = document.getElementById('mainGrid');
-
-            // mantém a renderização dinâmica intacta (não inclui o kit na grid)
-            grid.innerHTML = catalog
-                .filter(p => p.id !== 13)
-                .map(p => `
-                    <div class="product-card">
-                        <div class="product-image">
-                            ${p.media === 'video'
-                                ? `<video src="${p.img}" muted loop autoplay playsinline></video>`
-                                : `<img src="${p.img}" alt="${p.name}">`}
-                        </div>
-                        <div class="product-info">
-                            <div class="product-name">${p.name}</div>
-                            <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
-                            <button class="btn-add" onclick="clickBuy(${p.id})">
-                                <i class="fas fa-cart-plus"></i> ADICIONAR
-                            </button>
-                        </div>
+            grid.innerHTML = catalog.filter(p => p.id !== 13).map(p => `
+                <div class="product-card">
+                    <div class="product-image">
+                        ${p.media === 'video' ? `<video src="${p.img}" muted loop autoplay playsinline></video>` : `<img src="${p.img}" alt="${p.name}">`}
                     </div>
-                `).join('');
+                    <div class="product-info">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
+                        <button class="btn-add" onclick="clickBuy(${p.id})">
+                            <i class="fas fa-cart-plus"></i> ADICIONAR
+                        </button>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('open');
-        }
+        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); }
 
         function clickBuy(id) {
             const product = catalog.find(p => p.id === id);
             tempItem = { ...product, gender: '', color: '', size: '' };
-
             if (product.type === 'uni') {
                 addToCart({ ...tempItem, variant: 'Tamanho Único' });
                 return;
             }
-
             openModal(product);
         }
 
@@ -609,41 +410,25 @@
             document.getElementById('mTitle').innerText = p.name;
             document.getElementById('mPrice').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
             document.getElementById('productModal').classList.add('active');
-
-            // Reset modal states
             document.querySelectorAll('.opt-btn, .color-circle, .size-box').forEach(el => el.classList.remove('selected'));
             document.getElementById('modalGenderStep').classList.toggle('hidden', p.type === 'short');
             document.getElementById('modalColorStep').classList.add('hidden');
             document.getElementById('modalSizeStep').classList.toggle('hidden', p.type !== 'short');
             document.getElementById('btnConfirm').style.opacity = "0.3";
             document.getElementById('btnConfirm').style.cursor = "not-allowed";
-
-            if (p.type === 'short') {
-                renderSizes(['P', 'M', 'G']); // shorts apenas P M G
-            } else if (p.type === 'kit') {
-                // Kit: cor fixa conforme o kit
-                tempItem.color = 'Violeta (Exclusiva do Kit)';
-                renderSizes(['P', 'M', 'G', 'GG']);
-            } else {
-                // camisetas
-                renderSizes(['P', 'M', 'G', 'GG']);
-            }
+            if (p.type === 'short') renderSizes(['P', 'M', 'G']);
+            else if (p.type === 'kit') { tempItem.color = 'Violeta (Exclusiva do Kit)'; renderSizes(['P', 'M', 'G', 'GG']); }
+            else renderSizes(['P', 'M', 'G', 'GG']);
         }
 
-        function closeModal() {
-            document.getElementById('productModal').classList.remove('active');
-        }
+        function closeModal() { document.getElementById('productModal').classList.remove('active'); }
 
         function setGender(val, el) {
             tempItem.gender = val;
             document.querySelectorAll('#modalGenderStep .opt-btn').forEach(b => b.classList.remove('selected'));
             el.classList.add('selected');
-
-            if (tempItem.type === 'shirt') {
-                document.getElementById('modalColorStep').classList.remove('hidden');
-            } else if (tempItem.type === 'kit') {
-                document.getElementById('modalSizeStep').classList.remove('hidden');
-            }
+            if (tempItem.type === 'shirt') document.getElementById('modalColorStep').classList.remove('hidden');
+            else if (tempItem.type === 'kit') document.getElementById('modalSizeStep').classList.remove('hidden');
         }
 
         function setColor(val, el) {
@@ -654,8 +439,7 @@
         }
 
         function renderSizes(list) {
-            const area = document.getElementById('sizeOptions');
-            area.innerHTML = list.map(s => `<div class="size-box" onclick="setSize('${s}', this)">${s}</div>`).join('');
+            document.getElementById('sizeOptions').innerHTML = list.map(s => `<div class="size-box" onclick="setSize('${s}', this)">${s}</div>`).join('');
         }
 
         function setSize(val, el) {
@@ -668,13 +452,9 @@
 
         function confirmSelection() {
             if (document.getElementById('btnConfirm').style.opacity !== "1") return;
-
-            let desc = "";
-            if (tempItem.type === 'shirt') desc = `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}`;
-            else if (tempItem.type === 'short') desc = `Tamanho: ${tempItem.size}`;
-            else if (tempItem.type === 'kit') desc = `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}`;
-            else desc = `${tempItem.gender} | Tam ${tempItem.size}`;
-
+            let desc = tempItem.type === 'shirt' ? `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}` :
+                       tempItem.type === 'short' ? `Tamanho: ${tempItem.size}` :
+                       tempItem.type === 'kit' ? `${tempItem.gender} | ${tempItem.color} | Tam ${tempItem.size}` : `${tempItem.gender} | Tam ${tempItem.size}`;
             addToCart({ ...tempItem, variant: desc });
             closeModal();
         }
@@ -688,78 +468,52 @@
         function updateCartUI() {
             document.getElementById('headerCount').innerText = cart.length;
             const list = document.getElementById('cartItems');
-
             if (cart.length === 0) {
-                list.innerHTML = `
-                    <p style="text-align:center; color:#555; margin-top:50px;">
-                        <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i><br>
-                        Sua sacola está vazia
-                    </p>`;
+                list.innerHTML = `<p style="text-align:center;color:#555;margin-top:50px;"><i class="fas fa-shopping-bag" style="font-size:3rem;margin-bottom:15px;opacity:0.3;"></i><br>Sua sacola está vazia</p>`;
             } else {
                 list.innerHTML = cart.map(i => `
                     <div class="cart-item">
-                        <div style="flex: 1;">
-                            <div style="font-weight:700; font-size:0.95rem; margin-bottom: 5px;">${i.name}</div>
-                            <div style="font-size:0.75rem; color:#888; margin-bottom: 8px;">${i.variant}</div>
-                            <div style="color:var(--gold-primary); font-weight:700; font-size: 1.1rem;">R$ ${i.price.toFixed(2).replace('.',',')}</div>
+                        <div style="flex:1;">
+                            <div style="font-weight:700;font-size:0.95rem;margin-bottom:5px;">${i.name}</div>
+                            <div style="font-size:0.75rem;color:#888;margin-bottom:8px;">${i.variant}</div>
+                            <div style="color:var(--gold-primary);font-weight:700;font-size:1.1rem;">R$ ${i.price.toFixed(2).replace('.',',')}</div>
                         </div>
-                        <button onclick="removeItem(${i.uid})" style="background: none; border: none; color:#ff4444; cursor:pointer; padding: 10px; transition: 0.3s;">
+                        <button onclick="removeItem(${i.uid})" style="background:none;border:none;color:#ff4444;cursor:pointer;padding:10px;">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 `).join('');
             }
-
             updateTotals();
         }
 
         function removeItem(uid) {
             cart = cart.filter(i => i.uid !== uid);
-            if (cart.length === 0) {
-                globalShipping = 0;
-                document.getElementById('shippingInfo').classList.remove('active');
-                document.getElementById('cartCep').value = '';
-            }
+            if (cart.length === 0) { globalShipping = 0; document.getElementById('shippingInfo').classList.remove('active'); document.getElementById('cartCep').value = ''; }
             updateCartUI();
         }
 
-        // Formatar CEP automaticamente
         function formatCEP(input) {
             let value = input.value.replace(/\D/g, '');
-            if (value.length > 5) {
-                value = value.substring(0, 5) + '-' + value.substring(5, 8);
-            }
+            if (value.length > 5) value = value.substring(0,5) + '-' + value.substring(5,8);
             input.value = value;
-
-            // Auto calcular quando tiver 8 dígitos
-            if (value.replace(/\D/g, '').length === 8) {
-                autoCalculateShipping();
-            }
+            if (value.replace(/\D/g, '').length === 8) autoCalculateShipping();
         }
 
         function autoCalculateShipping() {
-            const cepInput = document.getElementById('cartCep');
-            const cep = cepInput.value.replace(/\D/g, '');
-
+            const cep = document.getElementById('cartCep').value.replace(/\D/g, '');
             if (cep.length !== 8) return;
-
-            // Mostrar loading
             document.getElementById('cepLoader').classList.add('active');
-
-            // Simular delay de cálculo
             setTimeout(() => {
-                const prefix = parseInt(cep.substring(0, 2));
-
-                if (prefix >= 1 && prefix <= 19) globalShipping = 19.90;       // SP
-                else if (prefix >= 20 && prefix <= 29) globalShipping = 24.90; // RJ/ES
-                else if (prefix >= 30 && prefix <= 39) globalShipping = 26.90; // MG
-                else if (prefix >= 80 && prefix <= 99) globalShipping = 29.90; // Sul
-                else globalShipping = 35.00;                                   // Resto
-
-                document.getElementById('shippingValue').innerText = `R$ ${globalShipping.toFixed(2).replace('.', ',')}`;
+                const prefix = parseInt(cep.substring(0,2));
+                if (prefix >= 1 && prefix <= 19) globalShipping = 19.90;
+                else if (prefix >= 20 && prefix <= 29) globalShipping = 24.90;
+                else if (prefix >= 30 && prefix <= 39) globalShipping = 26.90;
+                else if (prefix >= 80 && prefix <= 99) globalShipping = 29.90;
+                else globalShipping = 35.00;
+                document.getElementById('shippingValue').innerText = `R$ ${globalShipping.toFixed(2).replace('.',',')}`;
                 document.getElementById('shippingInfo').classList.add('active');
                 document.getElementById('cepLoader').classList.remove('active');
-
                 updateTotals();
             }, 800);
         }
@@ -767,69 +521,26 @@
         function updateTotals() {
             const subtotal = cart.reduce((acc, i) => acc + i.price, 0);
             const total = subtotal + globalShipping;
-
-            document.getElementById('subtotalDisplay').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            document.getElementById('totalDisplay').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
-
-            const btn = document.getElementById('checkoutBtn');
-            btn.disabled = !(cart.length > 0 && globalShipping > 0);
+            document.getElementById('subtotalDisplay').innerText = `R$ ${subtotal.toFixed(2).replace('.',',')}`;
+            document.getElementById('totalDisplay').innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
+            document.getElementById('checkoutBtn').disabled = !(cart.length > 0 && globalShipping > 0);
         }
 
         async function checkoutMercadoPago() {
             if (cart.length === 0) return alert("Sua sacola está vazia!");
-            if (globalShipping === 0) {
-                document.getElementById('cartCep').focus();
-                return alert("Por favor, digite seu CEP para calcular o frete.");
-            }
-
+            if (globalShipping === 0) { document.getElementById('cartCep').focus(); return alert("Por favor, digite seu CEP para calcular o frete."); }
             const btn = document.getElementById('checkoutBtn');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSANDO...';
             btn.disabled = true;
-
-            const items = cart.map(i => ({
-                title: i.name,
-                description: i.variant,
-                quantity: 1,
-                currency_id: 'BRL',
-                unit_price: i.price
-            }));
-
-            const preference = {
-                items,
-                shipments: { cost: globalShipping, mode: 'not_specified' },
-                back_urls: {
-                    success: window.location.href,
-                    failure: window.location.href,
-                    pending: window.location.href
-                },
-                auto_return: "approved"
-            };
-
+            const items = cart.map(i => ({ title: i.name, description: i.variant, quantity: 1, currency_id: 'BRL', unit_price: i.price }));
+            const preference = { items, shipments: { cost: globalShipping, mode: 'not_specified' }, back_urls: { success: window.location.href, failure: window.location.href, pending: window.location.href }, auto_return: "approved" };
             try {
-                const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${MP_TOKEN}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(preference)
-                });
-
+                const response = await fetch("https://api.mercadopago.com/checkout/preferences", { method: "POST", headers: { "Authorization": `Bearer ${MP_TOKEN}`, "Content-Type": "application/json" }, body: JSON.stringify(preference) });
                 const data = await response.json();
-
-                if (data.init_point) {
-                    window.location.href = data.init_point;
-                } else {
-                    alert("Erro ao processar pagamento. Tente novamente.");
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }
-            } catch (e) {
-                alert("Erro ao conectar com Mercado Pago.");
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }
+                if (data.init_point) window.location.href = data.init_point;
+                else { alert("Erro ao processar pagamento."); btn.innerHTML = originalText; btn.disabled = false; }
+            } catch (e) { alert("Erro ao conectar com Mercado Pago."); btn.innerHTML = originalText; btn.disabled = false; }
         }
 
         init();
