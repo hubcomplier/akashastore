@@ -1151,10 +1151,10 @@
                 price: 129.90,
                 // 6 imagens para preview no card (mistura de variantes)
                 defaultMedia: [
-                    { type: 'video', url: 'https://res.cloudinary.com/dlueoyrhe/video/upload/v1765744697/1_q3bkea_cno9do.mp4' },
                     { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765744489/OFICIAL_sxamyo.jpg' },
                     { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765744183/OFICIAL_boryjn.jpg' },
                     { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765745540/WhatsApp_Image_2025-12-14_at_17.18.33_1_e85lq3.jpg' },
+                    { type: 'video', url: 'https://res.cloudinary.com/dlueoyrhe/video/upload/v1765744697/1_q3bkea_cno9do.mp4' },
                     { type: 'video', url: 'https://res.cloudinary.com/dlueoyrhe/video/upload/v1765744859/generated_video_70__Trim_ezsy90.mp4' },
                     { type: 'video', url: 'https://res.cloudinary.com/dlueoyrhe/video/upload/v1765744527/MEU_CAMPO_VIOLETA_q7ocix.mp4' }
                 ],
@@ -1186,7 +1186,7 @@
                 ],
                 variants: {
                     'Feminino': {
-                        'Preto': [{ type: 'video', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765804156/WhatsApp_Image_2025-12-15_at_10.08.41_lwbt1m.jpg' }],
+                        'Preto': [{ type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765804156/WhatsApp_Image_2025-12-15_at_10.08.41_lwbt1m.jpg' }],
                         'Branco': [{ type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765804537/WhatsApp_Image_2025-12-15_at_09.41.19_1_ue1mp7.jpg' }],
                         'Violeta': [{ type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765804776/WhatsApp_Image_2025-12-15_at_09.26.09_1_taclfs.jpg' }]
                     },
@@ -1207,8 +1207,8 @@
         { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765691303/OFICIAL_EU_DECRETO_FEMININA_5_qzniyx.jpg' },
         { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765691304/OFICIAL_EU_DECRETO_FEMININA_VIOLETA_4_qjfvbj.jpg' },
         { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765728937/eu_decreto_masculino_preto_gkdxbk.jpg' },
-        { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765728936/EU_DECRETO_MASCULINO_VIOLETA_2_lxao9p.jpg' },
-        { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765728936/EU_DECRETO_MASCULINO_BRANCA_2_cmr05n.jpg' }
+        { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765728936/EU_DECRETO_MASCULINO_BRANCA_2_cmr05n.jpg' },
+        { type: 'image', url: 'https://res.cloudinary.com/dlueoyrhe/image/upload/v1765728936/EU_DECRETO_MASCULINO_VIOLETA_2_lxao9p.jpg' }
     ],
     variants: {
         'Feminino': {
@@ -1808,14 +1808,79 @@
             document.getElementById('checkoutBtn').disabled = !(cart.length > 0 && globalShipping > 0);
         }
 
-        async function checkoutMercadoPago() {
-            if (cart.length === 0) return alert("Sua sacola está vazia!");
-            if (globalShipping === 0) {
-                document.getElementById('cartCep').focus();
-                return alert("Por favor, digite seu CEP para calcular o frete.");
-            }
-            alert("⚠️ Integração com pagamento deve ser feita via backend seguro.");
+       async function checkoutMercadoPago() {
+    if (cart.length === 0) return alert("Sua sacola está vazia!");
+    if (globalShipping === 0) {
+        document.getElementById('cartCep').focus();
+        return alert("Por favor, digite seu CEP para calcular o frete.");
+    }
+
+    const btn = document.getElementById('checkoutBtn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSANDO...';
+    btn.disabled = true;
+
+    // Preparar itens para o Mercado Pago
+    const items = cart.map(i => ({
+        title: i.name,
+        description: i.variant || 'Produto AKASHA',
+        quantity: 1,
+        currency_id: 'BRL',
+        unit_price: i.price
+    }));
+
+    // Adicionar frete como item separado
+    if (globalShipping > 0) {
+        items.push({
+            title: 'Frete - Envio PAC',
+            description: `CEP: ${document.getElementById('cartCep').value}`,
+            quantity: 1,
+            currency_id: 'BRL',
+            unit_price: globalShipping
+        });
+    }
+
+    const preference = {
+        items: items,
+        back_urls: {
+            success: window.location.href + '?status=approved',
+            failure: window.location.href + '?status=failure',
+            pending: window.location.href + '?status=pending'
+        },
+        auto_return: "approved",
+        statement_descriptor: "AKASHA STORE",
+        external_reference: `AKASHA-${Date.now()}`
+    };
+
+    try {
+        const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer APP_USR-5825681340748019-121000-fc894cfe8189fff45937c635a2008444-1919866585",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(preference)
+        });
+
+        const data = await response.json();
+
+        if (data.init_point) {
+            // Limpar carrinho antes de redirecionar
+            localStorage.setItem('akasha_cart_backup', JSON.stringify(cart));
+            window.location.href = data.init_point;
+        } else {
+            console.error('Erro MP:', data);
+            alert("Erro ao processar pagamento. Tente novamente.");
+            btn.innerHTML = originalText;
+            btn.disabled = false;
         }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert("Erro ao conectar com o servidor de pagamento. Verifique sua conexão.");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
 
         function scrollToColecao() {
             document.getElementById('colecao')?.scrollIntoView({ behavior: 'smooth' });
